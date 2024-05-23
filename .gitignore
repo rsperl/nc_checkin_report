@@ -1,0 +1,5 @@
+data
+*.docx
+*.xlsx
+env.sh
+bin
