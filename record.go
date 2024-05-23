@@ -39,63 +39,22 @@ func NewStudentRecordFromRow(dataRow spreadsheet.Row, config Config) StudentReco
 	for i := 0; i < config.Results.Count; i++ {
 		col := IncrementLetter(config.Results.StartsOnColumn, i)
 		val, err := dataRow.Cell(col).GetValueAsNumber()
-		if err != nil {
-			panic(err)
-		}
+		handleErr(err, fmt.Sprintf("Error reading results from column %s", col))
 		results[i] = int(val)
 	}
 
 	nc, err := dataRow.Cell(config.NumberCorrect).GetValueAsNumber()
-	if err != nil {
-		panic(err)
-	}
+	handleErr(err, fmt.Sprintf("Error reading number correct from column %s", config.NumberCorrect))
+
 	pc, err := dataRow.Cell(config.PercentCorrect).GetValueAsNumber()
-	if err != nil {
-		panic(err)
-	}
+	handleErr(err, fmt.Sprintf("Error reading percent correct from column %s", config.PercentCorrect))
+
 	nia, err := dataRow.Cell(config.NumberItemsAttempted).GetValueAsNumber()
-	if err != nil {
-		panic(err)
-	}
+	handleErr(err, fmt.Sprintf("Error reading number items attempted from column %s", config.NumberItemsAttempted))
 
 	return StudentRecord{
 		LastName:             dataRow.Cell(config.LastName).GetString(),
 		FirstName:            dataRow.Cell(config.FirstName).GetString(),
-		NumberCorrect:        int(nc),
-		PercentCorrect:       pc,
-		NumberItemsAttempted: int(nia),
-		Results:              results,
-	}
-}
-
-func NewStudentRecordFromRow1(row spreadsheet.Row, startColumn string, nResults int) StudentRecord {
-	results := make([]int, nResults)
-
-	for i := 0; i < nResults; i++ {
-		col := GetColumnFrom(startColumn, i)
-		fmt.Printf("Getting column %s\n", col)
-		val, err := row.Cell(col).GetValueAsNumber()
-		if err != nil {
-			panic(err)
-		}
-		results[i] = int(val)
-	}
-	fmt.Printf("hi\n")
-	nc, err := row.Cell("E").GetValueAsNumber()
-	if err != nil {
-		panic(err)
-	}
-	pc, err := row.Cell("F").GetValueAsNumber()
-	if err != nil {
-		panic(err)
-	}
-	nia, err := row.Cell("G").GetValueAsNumber()
-	if err != nil {
-		panic(err)
-	}
-	return StudentRecord{
-		LastName:             row.Cell("B").GetString(),
-		FirstName:            row.Cell("C").GetString(),
 		NumberCorrect:        int(nc),
 		PercentCorrect:       pc,
 		NumberItemsAttempted: int(nia),

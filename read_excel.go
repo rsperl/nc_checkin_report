@@ -9,9 +9,7 @@ import (
 func ReadExcel(filename string, c Config) (spreadsheet.Row, []StudentRecord) {
 	fmt.Printf("Reading in file: %s\n", filename)
 	ss, err := spreadsheet.Open(filename)
-	if err != nil {
-		panic(err)
-	}
+	handleErr(err, "Error opening spreadsheet")
 	defer ss.Close()
 	sheet := ss.Sheets()[0]
 	records := []StudentRecord{}
@@ -33,9 +31,7 @@ func RowToMap(r spreadsheet.Row) map[string]string {
 	m := make(map[string]string)
 	for _, c := range r.Cells() {
 		column, err := c.Column()
-		if err != nil {
-			panic(err)
-		}
+		handleErr(err, "Error reading column")
 		m[column] = c.GetString()
 	}
 	return m

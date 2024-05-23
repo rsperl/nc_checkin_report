@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"strings"
 
 	"gopkg.in/yaml.v2"
@@ -30,6 +32,10 @@ func LoadConfig(data []byte) (Config, error) {
 	err := yaml.Unmarshal(data, &c)
 	if err != nil {
 		return c, err
+	}
+	if c.InFile == "" {
+		fmt.Println("inFile is required")
+		os.Exit(1)
 	}
 	if c.OutFile == "" {
 		c.OutFile = strings.ReplaceAll(c.Title, ":", "") + ".docx"
