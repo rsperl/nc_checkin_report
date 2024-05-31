@@ -30,13 +30,12 @@ func WriteDoc(filename string, records []StudentRecord, headers map[string]strin
 	doc := document.New()
 	defer doc.Close()
 
-	para := doc.AddParagraph()
-	para.SetStyle("Heading2")
-	run := para.AddRun()
-	run.AddText(config.Title)
-
 	// Iterate over your StudentRecord data and add a table on each page
 	for _, record := range records {
+		para := doc.AddParagraph()
+		para.SetStyle("Heading2")
+		run := para.AddRun()
+		run.AddText(config.Title)
 		table := doc.AddTable()
 		table.Properties().SetWidthPercent(50)
 		borders := table.Properties().Borders()
