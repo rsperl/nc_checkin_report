@@ -7,6 +7,7 @@ import (
 )
 
 type StudentRecord struct {
+	Core                 string
 	LastName             string
 	FirstName            string
 	NumberCorrect        int
@@ -53,6 +54,7 @@ func NewStudentRecordFromRow(dataRow spreadsheet.Row, config Config) StudentReco
 	handleErr(err, fmt.Sprintf("Error reading number items attempted from column %s", config.NumberItemsAttempted))
 
 	return StudentRecord{
+		Core:                 dataRow.Cell(config.Core).GetString(),
 		LastName:             dataRow.Cell(config.LastName).GetString(),
 		FirstName:            dataRow.Cell(config.FirstName).GetString(),
 		NumberCorrect:        int(nc),

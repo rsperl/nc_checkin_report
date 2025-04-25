@@ -42,6 +42,9 @@ func WriteDoc(filename string, records []StudentRecord, headers map[string]strin
 		borders.SetAll(wml.ST_BorderSingle, color.Auto, 1*measurement.Point)
 
 		row := table.AddRow()
+		populateCell(&row, headers[config.Core], record.Core)
+
+		row = table.AddRow()
 		populateCell(&row, headers[config.FirstName], record.FirstName)
 
 		row = table.AddRow()

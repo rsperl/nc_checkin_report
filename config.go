@@ -19,6 +19,7 @@ type Config struct {
 	Title                string `yaml:"title"`
 	HeaderStartsOnRow    int    `yaml:"headerStartsOnRow"`
 	PointsPossible       int    `yaml:"pointsPossible"`
+	Core                 string `yaml:"core"`
 	FirstName            string `yaml:"firstName"`
 	LastName             string `yaml:"lastName"`
 	NumberCorrect        string `yaml:"numberCorrect"`

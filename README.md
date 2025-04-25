@@ -5,8 +5,13 @@ To build, run `build.sh`.
 
 ## Usage
 
-A license from [unidoc](https://cloud.unidoc.io/dashboard?nextUrl=) is required. Set the value
-of the license to `UNIDOC_LICENSE_API_KEY`.
+A license from [unidoc](https://cloud.unidoc.io/dashboard?nextUrl=) is required.
+Set the value of the license to `UNIDOC_LICENSE_API_KEY`.
+
+Remove **ALL** blank columns and rows. The library used to read the spreadsheet
+omits blank rows, so leaving them in means you will not get all the data. Blank
+columns after the `startsOnColumn` are not accounted for in the code, so they
+must be removed as well.
 
 Create a `config.yaml` such as
 
