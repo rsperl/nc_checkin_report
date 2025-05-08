@@ -24,7 +24,9 @@ set UNIDOC_LICENSE_API_KEY=kfksjkadksadfkjsadkfjsakdfjskjfksajfksajdfksjdf
 Remove **ALL** blank columns and rows. The library used to read the spreadsheet
 omits blank rows, so leaving them in means you will not get all the data. Blank
 columns after the `startsOnColumn` are not accounted for in the code, so they
-must be removed as well.
+must be removed as well. Refer to
+[./sample_spreadsheet.xlsx](./sample_spreadsheet.xlsx) to see how the
+spreadsheet should look.
 
 Create a `config.yaml` such as
 
