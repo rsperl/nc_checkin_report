@@ -1,6 +1,7 @@
 # NC Checkin Report
 
 ## Build
+
 To build, run `build.sh`.
 
 ## Usage
@@ -16,20 +17,51 @@ must be removed as well.
 Create a `config.yaml` such as
 
 ```yaml
+# Name of the workbook containing data
+# Note -- only the first sheet in the workbook will be read
 infile: in.xlsx
-# defaults to title with colons removed
-outfile: output.docx
+
+# optional: defaults to title with colons removed
+# outfile: output.docx
+
+# Will be used as the title of each page.
+# Also will be used to name the output word document if outfile is not
+# specified.
 title: "NC Checkin: Physical Science Student Data"
+
+# The numerical row the header starts on
 headerStartsOnRow: 7
+
+# optional: The column containing the core.
+core: E
+
+# The number of points possible for this assessment
 pointsPossible: 30
+
+# The column containing the first name
 firstName: B
+
+# The column containing the last name
 lastName: C
-numberCorrect: E
-percentCorrect: F
-numberItemsAttempted: G
+
+# The column containing the number correct
+numberCorrect: F
+
+# The column containing the percent correct
+percentCorrect: G
+
+# The column containing the number of items attempted
+numberItemsAttempted: H
+
 results:
-  startsOnColumn: Q
-  count: 10
+
+  # The column where results start
+  startsOnColumn: L
+
+  # The number of result columns to expect
+  # There should be NO blank columns in between the first and last
+  # result column
+  count: 13
 ```
 
 Run as `./nc_checkin_report config.yaml`.
